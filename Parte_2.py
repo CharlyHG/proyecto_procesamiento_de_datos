@@ -2,7 +2,6 @@ import pandas as pd
 
 df = pd.read_csv('heart_failure_clinical_records_dataset.csv')
 df_1 = pd.DataFrame(df)
-print(df_1)
 
 muertos = df_1['DEATH_EVENT'] == 1 
 df_muertos = df_1[muertos]
