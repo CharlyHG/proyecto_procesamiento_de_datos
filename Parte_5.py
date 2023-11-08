@@ -30,5 +30,5 @@ df_cleaned = remove_outliers(df, 'creatinine_phosphokinase')
 df_cleaned_1 = remove_outliers(df_cleaned, 'platelets')
 df_cleaned_2 = remove_outliers(df_cleaned_1, 'serum_creatinine')
 df_cleaned_3 = remove_outliers(df_cleaned_2, 'serum_sodium')
-df_cleaned_3.to_csv('datos_limpios.csv', index=False)
+df_cleaned_3.to_csv('datos.csv', index=False)
 
