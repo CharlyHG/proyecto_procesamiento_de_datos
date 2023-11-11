@@ -15,8 +15,6 @@ def getRequestCSV(url: str):
     except:
         return False
 
-# LINK DATOS: https://huggingface.co/datasets/mstz/heart_failure/raw/main/heart_failure_clinical_records_dataset.csv
-
 def processData(dataframe: pd.DataFrame):
     dataSinFaltantes = dataframe.dropna()
     dataSinFaltantes.drop_duplicates(inplace=True)
@@ -32,29 +30,8 @@ def processData(dataframe: pd.DataFrame):
     dataSinAtipicos['ageCategory'] = pd.cut(dataSinAtipicos['age'], bins=[0, 12, 19, 39, 59, float('inf')], labels=['Niño', 'Adolescente', 'Joven adulto', 'Adulto', 'Adulto mayor'])
     dataSinAtipicos.to_csv('datosProcesados.csv', index=False)
 
-#PARTE6
-'''if len(sys.argv) > 1:
-    if getRequestCSV(sys.argv[1]):
-        data = pd.read_csv('datos.csv')
-        processData(data)
-    else:
-        print('Fallo el proceso')'''
-#PARTE 7
-'''data = pd.read_csv('datosProcesados.csv')
-data['age'].plot(title='Distribucion de Edades', kind='hist', edgecolor='black', xlabel='Edades', ylabel='Frecuencia')
-plt.show()
-dataAnemiaBySex = data[data['anaemia'] == 1].groupby('sex').size()
-dataDiabetesBySex = data[data['diabetes'] == 1].groupby('sex').size()
-dataFumadorBySex = data[data['smoking'] == 1].groupby('sex').size()
-dataMuertoBySeX = data[data['DEATH_EVENT'] == 1].groupby('sex').size()
-dataGroupedBySex = pd.DataFrame({'Anemia': dataAnemiaBySex, 'Diabetes': dataDiabetesBySex,
-                            'Fumadores': dataFumadorBySex, 'Muertos': dataMuertoBySeX})
-dataGroupedBySex.index = dataGroupedBySex.index.map({0: 'Mujeres', 1: 'Hombres'})
-dataGroupedBySex = dataGroupedBySex.T
-dataGroupedBySex.plot(title='Histograma Agrupado por Sexo' ,kind='bar', rot=0, ylabel='Cantidad', xlabel='Categorias')
-plt.show()'''
 
-#PARTE8
+
 data = pd.read_csv('datosProcesados.csv')
 newColumnsData = ['Anemia', 'Diabetes', 'Fumador', 'Muerto']
 data = data.rename(columns={'anaemia': newColumnsData[0], 'diabetes': newColumnsData[1],
